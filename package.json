@@ -5,6 +5,7 @@
   "main": "gulpfile.js",
   "dependencies": {
     "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
     "normalize.css": "^7.0.0"
   },
   "devDependencies": {
@@ -15,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/willewerton/MyTest.git"
+    "url": "git+https://github.com/williamewt/MyTest.git"
   },
   "author": "William Ewerton",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/willewerton/MyTest/issues"
+    "url": "https://github.com/williamewt/MyTest/issues"
   },
-  "homepage": "https://github.com/willewerton/MyTest#readme"
+  "homepage": "https://github.com/williamewt/MyTest#readme"
 }
