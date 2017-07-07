@@ -19,55 +19,55 @@
                                 <h1>Criar conta</h1>   
                             </div>
                         </div>
-                        <div class="row form">
-                            <div class="col-xs-12">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="form-group">
-                                                <label for="input-name">Nome completo*</label>
-                                                <input type="text" data-bind="value:name" class="form-control" name="input-name" id="input-name" placeholder="Nome">
-                                            </div>
-                                        </div>
-                                    </div> 
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="input-email">E-mail*</label>
-                                                <input type="email" data-bind="value:email" class="form-control" name="input-email" id="input-email" placeholder="Email">
-                                            </div>                                            
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="input-user">Usuário*</label>
-                                                <input type="text" data-bind="value:user" class="form-control" name="input-user" id="input-user" placeholder="Usuário">
-                                            </div>
-                                        </div>
-                                    </div>                                                                      
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="input-password">Senha*</label>
-                                                <input type="password" data-bind="value:password" class="form-control" name="input-password" id="input-password" placeholder="Senha">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="input-password-confirm">Confirme a Senha*</label>
-                                                <input type="password" data-bind="value:passwordConfirm" class="form-control" name="input-password-confirm" id="input-password-confirm" placeholder="Senha">
-                                            </div>
-                                        </div>
-                                    </div> 
-                                    <div class="row">
-                                        <div class="col-sm-6 mrg-t-lg">
-                                            <button type="reset" class="btn btn-lg btn-block btn-warning">Limpar</button>
-                                        </div>
-                                        <div class="col-sm-6 mrg-t-lg">
-                                            <button type="submit" class="btn btn-lg btn-block btn-primary">Criar</button>
+                        <br>
+                        <a href="#" onclick="window.history.back();"> Voltar</a>
+                        <div class="form">
+                            <form action="" method="post" id="formCreateUser">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="input-name">Nome completo*</label>
+                                            <input type="text" class="form-control" name="input-name" id="input-name" placeholder="Nome completo aqui" required>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                </div> 
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group" id="form-email">
+                                            <label class="control-label" id="label-email" for="input-email">E-mail*</label>
+                                            <input type="email" class="form-control" name="input-email" id="input-email" placeholder="Email aqui" required>
+                                        </div>                                            
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group" id="form-user">
+                                            <label class="control-label" id="label-user" for="input-user">Usuário*</label>
+                                            <input type="text" class="form-control" name="input-user" id="input-user" placeholder="Usuário aqui" required>
+                                        </div>
+                                    </div>
+                                </div>                                                                      
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="input-password">Senha*</label>
+                                            <input type="password" class="form-control" name="input-password" id="input-password" placeholder="Senha aqui" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="input-password-confirm">Confirme a Senha*</label>
+                                            <input type="password" class="form-control" name="input-password-confirm" id="input-password-confirm" placeholder="Redigite a senha aqui" required>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="row">
+                                    <div class="col-sm-6 mrg-t-lg">
+                                        <button type="reset" class="btn btn-lg btn-block btn-warning">Limpar</button>
+                                    </div>
+                                    <div class="col-sm-6 mrg-t-lg">
+                                        <button type="submit" class="btn btn-lg btn-block btn-primary">Criar</button>
+                                    </div>
+                                </div>                                
+                            </form>
                         </div>
                     </div> 
                 </div>
@@ -76,20 +76,102 @@
         </div>        
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="bower_components/knockout/dist/knockout.js"></script>
+        
 
         <script>
-        function ViewModel (){
-            self = this;
-            self.User = {
-                name : ko.observable(),
-                user : ko.observable(),
-                email : ko.observable(),
-                password : ko.observable(),
-                passwordConfirm : ko.observable(),
-            };
 
-            var data = ko.toJS({"data":self.User});
+        $('#input-email').blur(function(){
+            var email = $(this);
+            var div   = $('#form-email');
+            var label = $('#label-email');
+            validEmailAddress(email, div, label);            
+        });
+
+        $('#input-user').blur(function(){
+            var user = $(this);
+            var div   = $('#form-user');
+            var label = $('#label-user');
+
+            label.text('Usuário*');
+            div.removeClass('has-error');
+            div.removeClass('has-success');
+            if(user.val() != ''){
+                var validate = validateField('user', user.val());
+
+                console.log(validate);
+
+                if(validate){
+                    label.text('Usuário disponível');                
+                    div.addClass('has-success');
+                }else{
+                    label.text('Usuário indisponível');                
+                    div.addClass('has-error');
+                    user.focus();
+                } 
+            } 
+            
+        });
+
+        function validEmailAddress(email, div, label) {
+            label.text('E-mail*');
+            div.removeClass('has-error');
+            div.removeClass('has-success');
+            var pattern = new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
+            if(pattern.test(email.val()) == false && email.val() != ''){
+                label.text('E-mail inválido!');
+                div.addClass('has-error');
+                email.focus();
+            }else if(email.val() != ''){                
+                var validate = validateField('email', email.val());
+                console.log(validate);
+
+                if(validate){
+                    label.text('E-mail válido');                
+                    div.addClass('has-success');
+                }else{
+                    label.text('E-mail já cadastrado');                
+                    div.addClass('has-error');
+                    email.focus();
+                } 
+                
+            }
+        };
+
+        function validateField(field, fieldValue){
+            var result;
+            $.ajax({
+                url: 'back/validateField.php',
+                type: 'POST',
+                data: 'field=' + field + '&fieldValue=' + fieldValue,
+                dataType: 'json',
+                async: false,
+                success: function(data){
+                    console.log(data);
+                    if(data.validate === 0){
+                        result = false;
+                    }else{
+                        result = true;
+                    }                        
+                }
+            });
+
+            return result;
+        }
+
+        var password = $("#input-password");
+        var confirm_password = $("#input-password-confirm");
+
+        function validatePassword(){
+            if(password.val() != confirm_password.val()) {
+                confirm_password[0].setCustomValidity("Senhas diferentes!");
+            } else {
+                confirm_password[0].setCustomValidity('');
+            }
+        }
+
+        password[0].onchange = validatePassword;
+        confirm_password[0].onkeyup = validatePassword;
+        
 
 
 
