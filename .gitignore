@@ -64,3 +64,6 @@ typings/
 # Arquivo de configuração
 config.php
 
+#Arquivos do composer
+/vendor
+
