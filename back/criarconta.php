@@ -77,7 +77,8 @@ $send = $mgClient->sendMessage($domain, array(
     'html'    => 
     '<html>
         <h2>Olá, '.$register['name'].', acesse o link abaixo para ativar sua conta no MyTest</h2>
-        <a href="'.APP_URL.'/ativacao.php?t='.$register['token'].'">'.APP_URL.'/ativacao.php?t='.$register['token'].'</a>
+        <a href="'.APP_URL.'/ativacao.php?t='.$register['token'].'" target="_blank"> Clique aqui</a>
+        <p>Ou copie o link '.APP_URL.'/ativacao.php?t='.$register['token'].' e cole no seu navegador</p>
     </html>'
 ));
 

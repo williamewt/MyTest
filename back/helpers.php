@@ -13,7 +13,7 @@ function validateEmail($email){
 
 function validatePassword($password){
 
-    $pattern = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{6,}$/";
+    $pattern = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!@#$%&*()-_+=]{6,}$/";
 
     if (preg_match($pattern, $password)):
         return true;

@@ -109,7 +109,7 @@ function validatePassword(password, div, label){
     label.text('Senha*');
     div.removeClass('has-error');
     div.removeClass('has-success');           
-    var pattern = new RegExp(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{6,}$/);            
+    var pattern = new RegExp(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!@#$%&*()-_+=]{6,}$/);            
     if(!pattern.test(password.val()) && password.val() != ''){
         label.text('Senha inválida');
         div.addClass('has-error');
