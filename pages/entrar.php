@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset($_SESSION['auth']) && $_SESSION['auth']):
+	header('location: /perfil');
+endif;
+?>
 <!DOCTYPE>
 <html>
     <head>
@@ -16,21 +22,26 @@
                     <div class="panel panel-default content">
                         <div class="panel-heading">
                             <span class="pull-left">Entrar </span>
-                            <a class="pull-right" href="#" onclick="window.history.back();">Voltar</a>
-                            <div class="clearfix"></div>
+                            <a class="pull-right" href="../">Voltar</a>
+                            <div class="clearfix"></div>                            
                         </div>                        
                         <div class="panel-body">                            
                             <div class="form">
-                                <form>
+                                <div id="alert-div" class="alert hidden alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <span id="alert-msg"></span>
+                                </div>
+                                <img id="spinner" class="center-block hidden" src="img/spinner.svg" alt="">
+                                <form action="" method="post" id="formLogin">
                                     <div class="form-group">
-                                        <label for="input-name">E-mail / Usuário*</label>
-                                        <input type="text" class="form-control" name="input-name" id="input-name" placeholder="E-mail / Usuário">
+                                        <label for="input-user">E-mail / Usuário*</label>
+                                        <input type="text" class="form-control" name="input-user" id="input-user" placeholder="E-mail / Usuário" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="input-user">Senha*</label>
-                                        <input type="text" class="form-control" name="input-user" id="input-user" placeholder="Senha">
+                                        <label for="input-password">Senha*</label>
+                                        <input type="password" class="form-control" name="input-password" id="input-password" placeholder="Senha" required>
                                     </div>
-                                    <button type="submit" class="btn btn-lg btn-block btn-success">Entrar</button>
+                                    <button type="submit" id="btnDoLogin" data-loading-text="Processando..." class="btn btn-lg btn-block btn-success">Entrar</button>
                                 </form>                            
                             </div>
                         </div>
@@ -40,5 +51,6 @@
         </div>        
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="js/dist/entrar.min.js"></script>
     </body>
 </html>

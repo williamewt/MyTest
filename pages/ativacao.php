@@ -29,7 +29,7 @@
                         ?>
                             <span class="glyphicon glyphicon-check green"></span>
                             <h2>Parabéns <?php echo $user['name']; ?>, sua conta foi ativada com sucesso!</h2>
-                            <a href="entrar.html" class="btn btn-lg btn-primary">Entrar</a>
+                            <a href="entrar" class="btn btn-lg btn-primary">Entrar</a>
                         <?php else: ?>
                             <span class="glyphicon glyphicon-remove red"></span>
                             <h2>Link inválido!</h2>

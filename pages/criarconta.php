@@ -16,7 +16,7 @@
                     <div class="panel panel-default content">
                         <div class="panel-heading">
                             <span class="pull-left">Criar conta </span>
-                            <a class="pull-right" href="#" onclick="window.history.back();">Voltar</a>
+                            <a class="pull-right" href="../">Voltar</a>
                             <div class="clearfix"></div>
                         </div>
                         <div class="panel-body">
@@ -74,6 +74,6 @@
         </div>        
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="js/criarconta.js"></script>
+        <script src="js/dist/criarconta.min.js"></script>
     </body>
 </html>

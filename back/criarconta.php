@@ -17,11 +17,12 @@ $user             = $_POST['input-user'];
 $password         = $_POST['input-password'];
 $password_confirm = $_POST['input-password-confirm'];
 
+//Verifica se existe uma conexão com o banco de dados
 if (!isset($conn) || !is_object($conn)):
 	exit('Erro na conexão com o banco de dados.');
 endif;
 
-
+//Verifica se todos os campos foraam preenchidos
 foreach($_POST as $post):
     if(empty($post)):
         echo json_encode(['success' => 0, 'msg' => 'Os campos marcados com (*) são de preenchimento obrigatório.']);
@@ -29,11 +30,13 @@ foreach($_POST as $post):
     endif;
 endforeach;
 
+//Valida o formato do e-mail
 if(!validateEmail($email)):
    echo json_encode(['success' => 0, 'msg' => 'E-mail inválido']);
    return false;
 endif;
 
+//Verifica se o e-mail já está cadastrado
 $validateEmailUnique = $conn->prepare('SELECT * FROM '.$table.' WHERE email=:email');
 $validateEmailUnique->execute(['email' => $email]);
 
@@ -42,6 +45,7 @@ if(count($validateEmailUnique->fetchAll())):
    return false;
 endif;
 
+//Verific se o nome de usuário esta disponível 
 $validateUserUnique = $conn->prepare('SELECT * FROM '.$table.' WHERE user=:user');
 $validateUserUnique->execute(['user' => $user]);
 
@@ -50,12 +54,13 @@ if(count($validateUserUnique->fetchAll())):
    return false;
 endif;
 
-
+//Confirma se a senha foi confirmada
 if($password != $password_confirm):
     echo json_encode(['success' => 0, 'msg' => 'Senhas não conferem']);
     return false;
 endif;
 
+//Salva o usuário no banco de dados
 $sql = "INSERT INTO ".$table." (name, email, user, token, password, status) VALUES (:name, :email, :user, :token, :password, :status)"; 
 
 $save = $conn->prepare($sql);
@@ -68,13 +73,18 @@ $save->execute([
     'status'   => 0,
 ]);
 
+//Pega o id do ultimo registro
 $newId = $conn->lastInsertId();
 
+//Consulta do usuário que foi cadastrado
 $getRegister = $conn->prepare('SELECT * FROM '.$table.' WHERE id=:id');
 $getRegister->execute(['id' => $newId]);
 
-$register = $getRegister->fetch();   
+//Pegas as informações do usuário
+$register = $getRegister->fetch();
 
+ 
+//Envia o e-mail de confirmação
 $send = $mgClient->sendMessage($domain, array(
     'from'    => 'MyTest <contato@mytest.com.br>',
     'to'      => $register['email'],
@@ -89,4 +99,5 @@ $send = $mgClient->sendMessage($domain, array(
 
 echo json_encode(['success' => 1, 'msg' => 'A sua conta foi criada com sucesso! Um link de ativação foi enviado ao e-mail '.$register['email']]);
 
+//Fecha conexão com banco de dados
 $conn = null;

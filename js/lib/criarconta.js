@@ -178,7 +178,7 @@ $('#formCreateAccount').on('submit', function(e){
         success: function(data){            
             if(data.success === 1){
                 alert(data.msg);
-                $(location).attr('href', '../entrar.html');
+                $(location).attr('href', '../entrar');
             }else{
                 alert(data.msg);
             }
