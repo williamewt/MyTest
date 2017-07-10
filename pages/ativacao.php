@@ -16,7 +16,7 @@
                     <div class="content-ativacao">
                         <?php                             
                         if(isset($_GET['t'])):
-                            require_once('./back/connect.php');
+                            require_once('../back/connect.php');
                             $getUser = $conn->prepare('SELECT * FROM users WHERE token=:token');
                             $getUser->execute(['token' => $_GET['t']]);
                             $user = $getUser->fetch();

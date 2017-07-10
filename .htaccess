@@ -1,0 +1,13 @@
+
+
+RewriteEngine on
+RewriteRule ^criarconta$ pages/criarconta.html
+RewriteRule ^entrar$ pages/entrar.html
+RewriteRule ^perfil$ pages/perfil.php
+RewriteRule ^ativacao$ pages/ativacao.php
+
+ErrorDocument 400 /pages/erros/400.html
+ErrorDocument 401 /pages/erros/401.html
+ErrorDocument 403 /pages/erros/403.html
+ErrorDocument 404 /pages/erros/404.html
+ErrorDocument 500 /pages/erros/500.html

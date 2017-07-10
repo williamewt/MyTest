@@ -17,6 +17,11 @@ $user             = $_POST['input-user'];
 $password         = $_POST['input-password'];
 $password_confirm = $_POST['input-password-confirm'];
 
+if (!isset($conn) || !is_object($conn)):
+	exit('Erro na conexão com o banco de dados.');
+endif;
+
+
 foreach($_POST as $post):
     if(empty($post)):
         echo json_encode(['success' => 0, 'msg' => 'Os campos marcados com (*) são de preenchimento obrigatório.']);
@@ -77,8 +82,8 @@ $send = $mgClient->sendMessage($domain, array(
     'html'    => 
     '<html>
         <h2>Olá, '.$register['name'].', acesse o link abaixo para ativar sua conta no MyTest</h2>
-        <a href="'.APP_URL.'/ativacao.php?t='.$register['token'].'" target="_blank"> Clique aqui</a>
-        <p>Ou copie o link '.APP_URL.'/ativacao.php?t='.$register['token'].' e cole no seu navegador</p>
+        <a href="'.APP_URL.'/ativacao?t='.$register['token'].'" target="_blank"> Clique aqui</a>
+        <p>Ou copie o link '.APP_URL.'/ativacao?t='.$register['token'].' e cole no seu navegador</p>
     </html>'
 ));
 
