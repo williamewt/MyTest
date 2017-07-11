@@ -29,24 +29,4 @@ gulp.task('compress', function() {
 });
 
 
-gulp.task('default', function() {
-  gulp.src('sass/style.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./css/'));
-
-  gulp.src("./config.exemple.php")
-        .pipe(rename("./config.php"))
-        .pipe(gulp.dest("./"));
-
-  gulp.src('./js/lib/*.js')
-        .pipe(minify({
-            ext:{
-                src: '-debug.js',
-                min:'-min.js'
-            },
-            exclude: ['tasks'],
-            ignoreFiles: ['.combo.js', '-min.js']
-        }))
-        .pipe(gulp.dest('./js/'));
-
-});
+gulp.task('default', ['style', 'config', 'compress']);
