@@ -67,3 +67,5 @@ config.php
 #Arquivos do composer
 /vendor
 
+/.sass-cache
+

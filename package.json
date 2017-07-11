@@ -5,8 +5,7 @@
   "main": "gulpfile.js",
   "dependencies": {
     "gulp": "^3.9.1",
-    "gulp-rename": "^1.2.2",
-    "normalize.css": "^7.0.0"
+    "gulp-rename": "^1.2.2"
   },
   "devDependencies": {
     "gulp-minify": "^1.0.0",
