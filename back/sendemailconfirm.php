@@ -26,7 +26,7 @@ $register = $getRegister->fetch();
  
 //Envia o e-mail de confirmação
 $send = $mgClient->sendMessage($domain, array(
-    'from'    => 'MyTest <contato@mytest.com.br>',
+    'from'    => 'MyTest <contato@williamewerton.com.br>',
     'to'      => $register['email'],
     'subject' => 'Ativação de conta | MyTest',
     'html'    => 
